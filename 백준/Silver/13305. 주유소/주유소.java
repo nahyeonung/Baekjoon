@@ -31,19 +31,11 @@ public class Main {
         cnt=0;
         long sum = 0;
         long cal = 0;
+        long min = Integer.MAX_VALUE;
         for(int i=0; i<N-1; i++){
-            if(i == 0){
-                cal = region[i] * distance[i];
-                sum = sum + cal;
-            }
-            else{
-                long min = Integer.MAX_VALUE;
-                for(int j=0; j<=i; j++){
-                    min = Math.min(min, region[j]);
-                }
-                cal = min * distance[i];
-                sum = sum + cal;
-            }
+            min = Math.min(min, region[i]);
+            cal = min * distance[i];
+            sum = sum + cal;
         }
         System.out.println(sum);
         
