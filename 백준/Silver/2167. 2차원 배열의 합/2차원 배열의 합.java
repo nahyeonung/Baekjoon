@@ -1,41 +1,46 @@
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayDeque;
-import java.util.ArrayList;
+import java.io.OutputStreamWriter;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.Deque;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
-import java.util.Scanner;
-
+import java.util.StringTokenizer;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        Scanner sc = new Scanner(System.in);
-        int N = sc.nextInt();
-        int M = sc.nextInt();
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        
+        int N = Integer.parseInt(st.nextToken());
+        int M = Integer.parseInt(st.nextToken());
+
         int[][] arr = new int[N][M];
         for(int i=0; i<N; i++){
+            st = new StringTokenizer(br.readLine());
             for(int j=0; j<M; j++){
-                arr[i][j] = sc.nextInt();
+                arr[i][j] = Integer.parseInt(st.nextToken());
             }
         }
-        int k = sc.nextInt();
-        int[] result = new int[k];
-        for(int i=0; i<k; i++){
-            int startX = sc.nextInt();
-            int startY = sc.nextInt();
-            int endX = sc.nextInt();
-            int endY = sc.nextInt();
-            for(int j=startX-1; j<=endX-1; j++){
-                for(int l=startY-1; l<=endY-1; l++){
-                    result[i] += arr[j][l];
+        st = new StringTokenizer(br.readLine());
+
+        int loop = Integer.parseInt(st.nextToken());
+        for(int a=0; a<loop; a++){
+            st = new StringTokenizer(br.readLine());
+            int i = Integer.parseInt(st.nextToken()) - 1;
+            int j = Integer.parseInt(st.nextToken()) - 1;
+            int x = Integer.parseInt(st.nextToken()) - 1;
+            int y = Integer.parseInt(st.nextToken()) - 1;
+            int sum = 0;
+            for(int b=i; b<=x; b++){
+                for(int c=j; c<=y; c++){
+                    sum = sum + arr[b][c];
                 }
-            }
-            System.out.println(result[i]);
+            }            
+            bw.write(sum + "\n");
         }
+        bw.flush(); bw.close();
+
     }
 }
